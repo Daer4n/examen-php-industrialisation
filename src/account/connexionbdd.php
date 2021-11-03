@@ -20,7 +20,7 @@
 	$resmdp = $req->fetch()[0];
 	$req->closeCursor();
 	
-	if ($email == $resmail && $mdp == $resmdp){
+	if ($email == $resmail && password_verify($mdp, $resmdp)){
 			$_SESSION["email"] = $resmail;
 			header('Location: ../index.php');
 	} else {

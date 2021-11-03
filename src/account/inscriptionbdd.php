@@ -1,7 +1,7 @@
 <?php
 
 	$email=addslashes($_POST['email']);
-	$mdp=addslashes($_POST['mdp']);
+	$mdp=password_hash(addslashes($_POST['mdp']), PASSWORD_DEFAULT);
 	try {
 		$bdd = new PDO('mysql:host=127.0.0.1;dbname=indust_php;charset=utf8', 'root', '');
 	} catch(Exception $e) {
