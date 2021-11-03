@@ -1,4 +1,4 @@
-<?php include('header.php');?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/shared/header.php');?>
 
 <div class="block" style="background-color: palevioletred;" id="presentation">
 	<h2>Présentation</h2>
@@ -35,4 +35,4 @@
 	<p>Vous pouvez télécharger mon CV <a class="cv" target="_blank" href="./documents/cv_alexis_couturas.pdf">ici</a></p>
 </div>
 
-<?php include('footer.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/shared/footer.php'); ?>
