@@ -16,10 +16,12 @@
 				<a href="#formations" class="button-link">Formations</a>
 				<a href="#competences" class="button-link">Compétences</a>
 				<a href="#cv" class="button-link">CV</a>
-				<?php isset($_SESSION['email']) 
-				? print '<a href="/account/deconnect.php" class="button-link" style="margin-right: 30px;">Deconnexion</a>' 
-				: print '<a href="/account/connect.php" class="button-link">Connexion</a>
-						 <a href="/account/inscription.php" class="button-link" style="margin-right: 30px;">Inscription</a>';
+				<?php
+					isset($_SESSION['email']) 
+					? print '<a href="/account/deconnect.php" class="button-link" style="margin-right: 30px;">Deconnexion</a>'
+					
+					: print '<a href="/account/connect.php" class="button-link">Connexion</a>
+							<a href="/account/inscription.php" class="button-link" style="margin-right: 30px;">Inscription</a>';
 				?>
 			</div>
 		</header>

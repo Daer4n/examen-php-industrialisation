@@ -1,35 +1,28 @@
 <?php
 	session_start();
 
-	$email=addslashes($_GET['email']);
-	$mdp=addslashes($_GET['mdp']);
+	$email=addslashes($_POST['email']);
+	$mdp=addslashes($_POST['mdp']);
 
-	try
-	{
-		$bdd = new PDO('mysql:host=localhost;dbname=indust_php;charset=utf8', 'root', '');
-	}
-	catch(Exception $e)
-	{
+	try {
+		$bdd = new PDO('mysql:host=127.0.0.1;dbname=indust_php;charset=utf8', 'root', '');
+	} catch(Exception $e) {
 		die('Erreur : '.$e->getMessage());
 	}
 
-	$req = $bdd->prepare('SELECT mail, type_utilisateur FROM compte WHERE mail="'.$email.'"');
+	$req = $bdd->prepare('SELECT `mail` FROM compte WHERE mail="'.$email.'"');
 	$req->execute();
-	$resmail = $req->fetch();
+	$resmail = $req->fetch()[0];
 	$req->closeCursor();
 
-	$req = $bdd->prepare('SELECT mdp FROM compte WHERE mail = "'.$email.'"');
+	$req = $bdd->prepare('SELECT `password` FROM compte WHERE mail = "'.$email.'"');
 	$req->execute();
-	$resmdp = $req->fetch();
+	$resmdp = $req->fetch()[0];
 	$req->closeCursor();
-				
-	if ($email == $resmail[0] && $mdp == $resmdp[0]){
-			$_SESSION["email"]=$resmail[0];
-			var_dump($resmail[1]);exit;
-			$_SESSION["statut"]=$resmail[1];
-			header('Location: '.$_SERVER['DOCUMENT_ROOT'].'/index.php');
+	
+	if ($email == $resmail && $mdp == $resmdp){
+			$_SESSION["email"] = $resmail;
+			header('Location: ../index.php');
+	} else {
+			header('Location: ../index.php');
 	}
-	else {
-			header('Location: '.$_SERVER['DOCUMENT_ROOT'].'/index.php');
-	}
-?>
